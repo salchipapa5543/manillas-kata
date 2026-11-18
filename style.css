@@ -1,0 +1,368 @@
+/* Variables de Diseño y Colores */
+:root {
+    --bg-color: #050505;
+    --card-bg: #111111;
+    --gold-primary: #d4af37;
+    --gold-light: #f3e5ab;
+    --gold-dark: #aa7c11;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --border-gold: rgba(212, 175, 55, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo con orbes luminosos animados */
+.background-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--gold-primary);
+    top: -100px;
+    left: -100px;
+    animation: floatOrb 10s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--gold-dark);
+    bottom: -150px;
+    right: -100px;
+    animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 80px) scale(1.1); }
+}
+
+/* Estructura Principal */
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-tag {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Sección Hero */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    flex: 1;
+    padding: 4rem 0;
+}
+
+.hero-content {
+    animation: fadeInLeft 1s ease-out;
+}
+
+/* Píldora de estado */
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--border-gold);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    animation: pulseGlow 3s infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { border-color: rgba(212, 175, 55, 0.3); }
+    50% { border-color: rgba(212, 175, 55, 0.8); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+}
+
+/* Tipografía Principal */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.gold-gradient {
+    background: linear-gradient(135deg, #fff 20%, var(--gold-primary) 60%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.hero-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+/* Botón de WhatsApp Impactante (Efecto Puro CSS) */
+.cta-container {
+    position: relative;
+    display: inline-block;
+}
+
+.whatsapp-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #25d366;
+    color: #ffffff;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    z-index: 2;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    background: #20ba5a;
+}
+
+.whatsapp-button:active {
+    transform: translateY(-1px);
+}
+
+.whatsapp-icon {
+    display: flex;
+    align-items: center;
+}
+
+/* Efecto de Brillo Desplazándose en el Botón */
+.whatsapp-button .button-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: buttonShine 3s infinite;
+}
+
+@keyframes buttonShine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Tarjeta Visual 3D (Lado Derecho) */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: fadeInRight 1s ease-out;
+}
+
+.luxury-card {
+    width: 320px;
+    height: 420px;
+    background: linear-gradient(145deg, #161616, #0d0d0d);
+    border: 1px solid var(--border-gold);
+    border-radius: 24px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(212, 175, 55, 0.2);
+    transition: transform 0.5s ease;
+}
+
+/* Efecto Hover 3D en la Tarjeta */
+.luxury-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+    border-color: var(--gold-primary);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+.card-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+.card-image-placeholder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Gráfico abstracto simulando joya */
+.ring-graphic {
+    width: 120px;
+    height: 120px;
+    border: 3px dashed var(--gold-primary);
+    border-radius: 50%;
+    animation: rotateRing 20s linear infinite;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.sparkle {
+    position: absolute;
+    color: var(--gold-light);
+    font-size: 1.2rem;
+    animation: sparkleAnim 2s infinite alternate;
+}
+
+.s1 { top: 20%; left: 25%; }
+.s2 { bottom: 25%; right: 25%; animation-delay: 1s; }
+
+@keyframes sparkleAnim {
+    0% { transform: scale(0.8); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 10px var(--gold-light); }
+}
+
+.card-footer h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-main);
+}
+
+.card-footer p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Pie de página */
+.footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Animaciones de Entrada */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Diseño Responsivo (Celulares) */
+@media (max-width: 900px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+        padding: 2rem 0;
+    }
+
+    .hero-description {
+        margin: 0 auto 2rem auto;
+    }
+
+    .badge-pill {
+        margin: 0 auto 1.5rem auto;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-visual {
+        margin-top: 1rem;
+    }
+}
